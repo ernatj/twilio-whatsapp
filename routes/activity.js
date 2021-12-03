@@ -88,17 +88,17 @@ exports.execute = function (req, res) {
     // const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d'; 
 
     const axios = require('axios');
-    const qs = require('querystring');
+    const qs = require('qs');
     // require('dotenv').config();
     
     const authToken = process.env.TWILIO_AUTH_TOKEN
     const accountId = process.env.TWILIO_ACCOUNT_SID
     
-    axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", {
+    axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
       'Body': 'Hello ini dari node.js biasa',
       'From': 'whatsapp:+14155238886',
       'To': 'whatsapp:+6285719752942',
-    }, {
+    }), {
       auth: {
         username: accountId,
         password: authToken
