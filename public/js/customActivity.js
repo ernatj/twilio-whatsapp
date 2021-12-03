@@ -148,8 +148,7 @@ define([
         // console.dir(phoneNumberValue);
         // console.log("Message ");
         // console.dir(messageValue);
-        console.log("Payload ");
-        console.dir(payload);
+        console.log("Payload "+JSON.stringify(payload));
         //console.log("Payload"+ JSON.stringify(JSON.parse(payload),null,2));
         connection.trigger('updateActivity', payload);
     }
