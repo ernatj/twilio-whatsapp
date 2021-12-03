@@ -144,9 +144,12 @@ define([
         
         payload['metaData'].isConfigured = true;
 
-        console.log("Phone Number "+phoneNumberValue)
-        console.log("Message "+messageValue)
-        console.log("Payload "+payload)
+        // console.log("Phone Number ");
+        // console.dir(phoneNumberValue);
+        // console.log("Message ");
+        // console.dir(messageValue);
+        console.log("Payload ");
+        console.dir(payload);
         //console.log("Payload"+ JSON.stringify(JSON.parse(payload),null,2));
         connection.trigger('updateActivity', payload);
     }
