@@ -84,8 +84,12 @@ exports.execute = function (req, res) {
     console.log("=======================")
     
     // decoded in arguments
-    const accountSid = 'ACb494ea5723f3f2f591bbc092b094d41d'; 
-    const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d'; 
+    // const accountSid = 'ACb494ea5723f3f2f591bbc092b094d41d'; 
+    // const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d'; 
+
+    const accountSid = process.env.TWILIO_ACCOUNT_SID; 
+    const authToken = process.env.TWILIO_AUTH_TOKEN; 
+    
     const client = require('twilio')(accountSid, authToken); 
      
     client.messages 
