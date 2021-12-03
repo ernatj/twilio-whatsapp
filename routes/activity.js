@@ -95,9 +95,9 @@ exports.execute = function (req, res) {
     const accountId = process.env.TWILIO_ACCOUNT_SID
     
     axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
-      'Body': req.body.inArguments.messageValue,
-      'From': 'whatsapp:+14155238886',
-      'To': 'whatsapp:+'+ req.body.inArguments.phoneNumberValue,
+        'Body': req.body.inArguments.messageValue,
+        'From': 'whatsapp:+14155238886',
+        'To': 'whatsapp:+'+ req.body.inArguments.phoneNumberValue,
     }), {
       auth: {
         username: accountId,
@@ -105,7 +105,9 @@ exports.execute = function (req, res) {
       }
     })
     .then(response => {
-      console.log(response);
+
+        //Send Status to Data Extension for Updates
+        console.log(response);
     })
     .catch(error => {
       console.log('Auth '+authToken+' Account SID '+accountId);

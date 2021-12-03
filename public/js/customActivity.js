@@ -122,7 +122,7 @@ define([
 
         var phoneNumberValue = $('#form-element-01').val();
         var messageValue = $('#textarea-id-01').val();
-        var dataExtension = "WelcomeProgramJourney_2"
+        var dataExtension = "WelcomeProgramJourney_3"
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
