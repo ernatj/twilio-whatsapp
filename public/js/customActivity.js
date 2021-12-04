@@ -78,11 +78,16 @@ define([
                 //     $('#postcard-preview-text').html($('#postcard-text').val());
                 // }
 
-                if (key === 'phoneNumberValue'){
+                if (key === 'DataExtension'){
+                    $('#dropdown-element-01').val(val);
+                }
+                if (key === 'Sender'){
+                    $('#dropdown-element-02').val(val);
+                }
+                if (key === 'Mobile'){
                     $('#form-element-01').val(val);
                 }
-
-                if(key === 'messageValue'){
+                if(key === 'Message'){
                     $('#textarea-id-01').val(val);
                 }
             });
@@ -96,9 +101,6 @@ define([
         );
 
         var outArguments = hasOutArguments ? payload['arguments'].execute.outArguments : {};
-        
-        console.log(inArguments);
-        console.log(outArguments);
 
         connection.trigger('updateButton', {
             button: 'next',
@@ -121,14 +123,18 @@ define([
         // var postcardTextValue = $('#postcard-text').val();
 
         var phoneNumberValue = $('#form-element-01').val();
+        var dataExtension = $('#dropdown-element-01').val();
+        var senderNumberValue = $('#dropdown-element-02').val();
         var messageValue = $('#textarea-id-01').val();
-        var dataExtension = "WelcomeProgramJourney_3"
+        // var dataExtension = "WelcomeProgramJourney_3"
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
-            "phoneNumberValue": phoneNumberValue,
-            "messageValue": messageValue,
+            "DataExtension": dataExtension,
+            "Mobile": "{{Contact.Attribute."+dataExtension+".[Mobile Number]}}",
+            "Sender": senderNumberValue,
+            "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
             "FirstName": "{{Contact.Attribute."+dataExtension+".FirstName}}",
             "LastName": "{{Contact.Attribute."+dataExtension+".LastName}}"

@@ -6,7 +6,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="vendor/salesforce-lightning-design-system/styles/salesforce-lightning-design-system.css">
+    <link rel="stylesheet"
+        href="vendor/salesforce-lightning-design-system/styles/salesforce-lightning-design-system.css">
     <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript" src="//code.jquery.com/git/jquery-git.min.js"></script>
     <script type="text/javascript" src="js/require.js"></script>
@@ -29,15 +30,47 @@
     <div id="step1" class="step">
         <div class="slds-grid">
             <div class="slds-form-element slds-col slds-size_3-of-3">
-                <label class="slds-form-element__label" for="form-element-01">Phone Number</label>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label slds-text-heading_medium" for="data-extension">Data Extension</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <select class="slds-select" id="dropdown-element-01">
+                                <option value="">Select Option...</option>
+                                <option value="WelcomeProgramJourney">WelcomeProgramJourney</option>
+                                <option value="WelcomeProgramJourney_2">WelcomeProgramJourney_2</option>
+                                <option value="WelcomeProgramJourney_3">WelcomeProgramJourney_3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="slds-grid">
+            <div class="slds-form-element slds-col slds-size_3-of-3">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label slds-text-heading_medium" for="data-extension">Sender</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <select class="slds-select" id="dropdown-element-02">
+                                <option value="">Select Option...</option>
+                                <option value="14155238886">14155238886</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="slds-grid">
+            <div class="slds-form-element slds-col slds-size_3-of-3">
+                <label class="slds-form-element__label slds-text-heading_medium" for="form-element-01">Phone Number</label>
                 <div class="slds-form-element__control">
                     <input type="text" id="form-element-01" placeholder="Placeholder text…" class="slds-input" />
                 </div>
             </div>
-        </div>
+        </div><br>
         <div class="slds-grid">
             <div class="slds-form-element slds-col slds-size_3-of-3">
-                <label class="slds-form-element__label" for="textarea-id-01">Message</label>
+                <label class="slds-form-element__label slds-text-heading_medium" for="textarea-id-01">Message</label>
                 <div class="slds-form-element__control">
                     <textarea id="textarea-id-01" placeholder="Placeholder text…" class="slds-textarea"></textarea>
                 </div>
