@@ -84,9 +84,6 @@ define([
                 if (key === 'Sender'){
                     $('#dropdown-element-02').val(val);
                 }
-                if (key === 'Mobile'){
-                    $('#form-element-01').val(val);
-                }
                 if(key === 'Message'){
                     $('#textarea-id-01').val(val);
                 }
