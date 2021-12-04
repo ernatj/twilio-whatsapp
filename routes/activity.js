@@ -4,6 +4,8 @@ var util = require('util');
 // Deps
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
+const axios = require('axios');
+const qs = require('qs');
 var util = require('util');
 var http = require('https');
 var request = require('request');
@@ -86,9 +88,6 @@ exports.execute = function (req, res) {
     // decoded in arguments
     // const accountSid = 'ACb494ea5723f3f2f591bbc092b094d41d'; 
     // const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d'; 
-
-    const axios = require('axios');
-    const qs = require('qs');
     // require('dotenv').config();
     
     const authToken = process.env.TWILIO_AUTH_TOKEN

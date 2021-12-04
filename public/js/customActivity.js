@@ -34,20 +34,20 @@ define([
     function onRequestedDataSources(dataSources){
         console.log('*** requestedDataSources ***');
         // dataSources = JSON.stringify(dataSources)
-        console.log("DATA SOURCE => "+dataSources);
+        console.log("DATA SOURCE => "+JSON.stringify(dataSources));
     }
 
     function onRequestedInteraction (interaction) {    
         console.log('*** requestedInteraction ***');
         // interaction = JSON.stringify(interaction)
-        console.log("INTERACTION =>"+interaction);
+        console.log("INTERACTION =>"+JSON.stringify(interaction));
      }
 
      function onRequestedTriggerEventDefinition(eventDefinitionModel) {
         console.log('*** requestedTriggerEventDefinition ***');
         // eventDefinitionModel = JSON.stringify(JSON.parse(eventDefinitionModel), null, 2)
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-        console.log("EVENT DEFINITION"+eventDefinitionModel);
+        console.log("EVENT DEFINITION"+JSON.stringify(eventDefinitionModel))
     }
 
     function initialize(data) {
@@ -116,9 +116,6 @@ define([
     }
 
     function save() {
-        // var postcardURLValue = $('#postcard-url').val();
-        // var postcardTextValue = $('#postcard-text').val();
-
         var phoneNumberValue = $('#form-element-01').val();
         var dataExtension = $('#dropdown-element-01').val();
         var senderNumberValue = $('#dropdown-element-02').val();
