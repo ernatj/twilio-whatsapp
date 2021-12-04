@@ -128,7 +128,7 @@ define([
             "tokens": authTokens,
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
             "DataExtension": dataExtension,
-            "Mobile": `{{Contact.Attribute.${dataExtension}.Mobile}}`,
+            "Mobile": "{{Contact.Attribute."+dataExtension+".Mobile}}",
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
