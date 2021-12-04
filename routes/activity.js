@@ -104,7 +104,6 @@ exports.execute = function (req, res) {
       }
     })
     .then(response => {
-
         //Send Status to Data Extension for Updates
         console.log("Response Data"+response.data);
     })

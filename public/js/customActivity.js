@@ -34,6 +34,8 @@ define([
     function onRequestedDataSources(dataSources){
         console.log('*** requestedDataSources ***');
         // dataSources = JSON.stringify(dataSources)
+
+        // Request Data Extension Name using dataExtensionId with data extension APi
         console.log("DATA SOURCE => "+JSON.stringify(dataSources));
     }
 
@@ -126,7 +128,7 @@ define([
             "tokens": authTokens,
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
             "DataExtension": dataExtension,
-            "Mobile": "{{Contact.Attribute."+dataExtension+".[Mobile Number]}}",
+            "Mobile": "{{Contact.Attribute."+dataExtension+".\"Mobile Number\"}}",
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
