@@ -105,7 +105,7 @@ exports.execute = function (req, res) {
     })
     .then(response => {
         //Send Status to Data Extension for Updates
-        console.log("Response Data"+response.data);
+        console.log("Response Data"+util.inspect(response));
     })
     .catch(error => {
       console.log('Auth '+authToken+' Account SID '+accountId);
