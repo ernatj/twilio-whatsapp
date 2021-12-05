@@ -145,7 +145,7 @@ define([
             "ContactKey": "{{Contact.Key}}",
             "FirstName": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
             "LastName": "{{Contact.Attribute."+dataExtensionSource+".LastName}}",
-            "Mobile": phoneNumberValue,
+            "Mobile": "{{Contact.Attribute."+dataExtensionSource+".Mobile}}",
             "Sent": true
         }]
         
