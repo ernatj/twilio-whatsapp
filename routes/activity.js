@@ -106,7 +106,7 @@ exports.execute = function (req, res) {
     })
     .then(response => {
         //Send Status to Data Extension for Updates
-        console.log("Response Data"+util.inspect(response));
+        console.log("Response Data"+util.inspect(response.data));
 
         var config = {
             'headers': {
