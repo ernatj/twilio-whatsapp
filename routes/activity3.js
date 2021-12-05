@@ -116,7 +116,7 @@ exports.execute = function (req, res) {
       })
         .then(twilioResponse => {
           //Send Status to Data Extension for Updates
-          console.log("Response Data" + util.inspect(twilioResponse.data));
+          // console.log("Response Data" + util.inspect(twilioResponse.data));
 
           var payload = {
             "items": [{
@@ -159,11 +159,11 @@ exports.execute = function (req, res) {
         })
         .catch(error => {
           console.log('Auth ' + authToken + ' Account SID ' + accountId);
-          console.log("Error TWILIO =>" + error);
+          // console.log("Error TWILIO =>" + error);
         })
     })
     .catch(error => {
-      console.log("Error TOKEN => " + error)
+      // console.log("Error TOKEN => " + error)
     });
 
   console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
