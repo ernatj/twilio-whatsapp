@@ -113,8 +113,12 @@ exports.execute = function (req, res) {
                 'Authorization': 'Bearer '+mcToken
             }
         }
+
+        var data = {
+            'items': [response.data]
+        }
         
-        axios.post(`https://mcx3dk6gqx05byn626r3yqc9-hl0.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:${dataextensionId}/rows`, response.data, config)
+        axios.post(`https://mcx3dk6gqx05byn626r3yqc9-hl0.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:${dataextensionId}/rows`, data, config)
         .then(response => {
             console.log(response);
         })
