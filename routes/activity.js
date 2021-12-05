@@ -91,7 +91,7 @@ exports.execute = function (req, res) {
     
     const authToken = process.env.TWILIO_AUTH_TOKEN
     const accountId = process.env.TWILIO_ACCOUNT_SID
-    const mcToken = "eyJhbGciOiJIUzI1NiIsImtpZCI6IjQiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJZbEFma1V2QnpIVHVpNjllNGYwR1F0ejEiLCJjbGllbnRfaWQiOiJzcm11NDl4NXExdzJ2amV5OXN1ZWY2NHciLCJlaWQiOjExMDAwNjQ3NCwic3RhY2tfa2V5IjoiUzExIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.dLnLuzzIA2ShP6Qv-3fk4jCkK3ikdU-pQMbYQa0BNns.v0PnSEO1QpUW14WlhPpjGEjPcTfa-bEjsi3_hA4kMYVqe6cq0esptsstKEIx_O_vsW9DLI9p1saSxJYVtr6G8qX_OglTOEddprpsrNFv8bY9D9Kf4QX2AaTgmA1VE_8NpjacMsHmnHgo5YXU_Sr1I9Lf16fr5xGgCDlkcqA5CJO7XgWb0r_"
+    const mcToken = "eyJhbGciOiJIUzI1NiIsImtpZCI6IjQiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJZQzZNYUhIZWlHUjVBSkprR0p5aE5RSVkiLCJjbGllbnRfaWQiOiJzcm11NDl4NXExdzJ2amV5OXN1ZWY2NHciLCJlaWQiOjExMDAwNjQ3NCwic3RhY2tfa2V5IjoiUzExIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.XfIG3-NFAJ23XwB33HUm_dKGNqCcB5J1fMzsJk11028._CWja-58vVj3tdB2z1Xyu6_Oo0O2MqWCpY5Ci_VlGuCsJXSnRgkGtXwmHOfquNGcMmUWV2F2UMqAIcVgOjJikpvwyanhSnSlx-7HkBa9l-29pViQTsJ-NtSpJyVDpntKw4pM-e4nu-jwcZBzrsCzwonYopTZ0kPZcZPVNyNPYSFzfMyLcZ7"
     const dataextensionId = "F8BCBDCC-6526-49BD-BCBE-CC4A906FE0D2"
 
     axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
