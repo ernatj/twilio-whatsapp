@@ -80,14 +80,17 @@ define([
                 //     $('#postcard-preview-text').html($('#postcard-text').val());
                 // }
 
-                if (key === 'DataExtension'){
-                    $('#dropdown-element-01').val(val);
+                if (key === 'DataExtensionSource'){
+                    $('#dropdown-element-dataextension-source').val(val);
+                }
+                if (key === 'DataExtensionResponse'){
+                    $('#dropdown-element-dataextension-response').val(val);
                 }
                 if (key === 'Sender'){
-                    $('#dropdown-element-02').val(val);
+                    $('#dropdown-element-sender').val(val);
                 }
                 if(key === 'Message'){
-                    $('#textarea-id-01').val(val);
+                    $('#textarea-id-message').val(val);
                 }
             });
         });
@@ -118,28 +121,30 @@ define([
     }
 
     function save() {
-        var phoneNumberValue = $('#form-element-01').val();
-        var dataExtension = $('#dropdown-element-01').val();
-        var senderNumberValue = $('#dropdown-element-02').val();
-        var messageValue = $('#textarea-id-01').val();
-        // var dataExtension = "WelcomeProgramJourney_3"
+        // var phoneNumberValue = $('#form-element-01').val();
+        var dataExtensionSource = $('#dropdown-element-dataextension-source').val();
+        var dataExtensionResponse = $('#dropdown-element-dataextension-response').val();
+        var senderNumberValue = $('#dropdown-element-sender').val();
+        var messageValue = $('#textarea-id-message').val();
+        // var dataExtensionSource = "WelcomeProgramJourney_3"
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
-            "DataExtension": dataExtension,
-            "Mobile": "{{Contact.Attribute."+dataExtension+".Mobile}}",
+            "DataExtensionSource": dataExtensionSource,
+            "DataExtensionResponse": dataExtensionResponse,
+            "Mobile": "{{Contact.Attribute."+dataExtensionSource+".Mobile}}",
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
-            "FirstName": "{{Contact.Attribute."+dataExtension+".FirstName}}",
-            "LastName": "{{Contact.Attribute."+dataExtension+".LastName}}"
+            "FirstName": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
+            "LastName": "{{Contact.Attribute."+dataExtensionSource+".LastName}}"
         }];
 
         payload['arguments'].execute.outArguments = [{
             "ContactKey": "{{Contact.Key}}",
-            "FirstName": "{{Contact.Attribute."+dataExtension+".FirstName}}",
-            "LastName": "{{Contact.Attribute."+dataExtension+".LastName}}",
+            "FirstName": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
+            "LastName": "{{Contact.Attribute."+dataExtensionSource+".LastName}}",
             "Mobile": phoneNumberValue,
             "Sent": true
         }]

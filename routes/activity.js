@@ -6,7 +6,6 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 const axios = require('axios');
 const qs = require('qs');
-var util = require('util');
 var http = require('https');
 var request = require('request');
 
@@ -92,7 +91,9 @@ exports.execute = function (req, res) {
     
     const authToken = process.env.TWILIO_AUTH_TOKEN
     const accountId = process.env.TWILIO_ACCOUNT_SID
-    
+    const mcToken = process.env.MC_TOKEN
+    const dataextensionId = "F8BCBDCC-6526-49BD-BCBE-CC4A906FE0D2"
+
     axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
         'Body': req.body.inArguments[0].Message,
         'From': 'whatsapp:+'+ req.body.inArguments[0].Sender,
@@ -106,6 +107,20 @@ exports.execute = function (req, res) {
     .then(response => {
         //Send Status to Data Extension for Updates
         console.log("Response Data"+util.inspect(response));
+
+        var config = {
+            'headers': {
+                'Authorization': 'Bearer '+mcToken
+            }
+        }
+        
+        axios.post(`https://mcx3dk6gqx05byn626r3yqc9-hl0.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:${dataextensionId}/rows`, response.data, config)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
     })
     .catch(error => {
       console.log('Auth '+authToken+' Account SID '+accountId);
