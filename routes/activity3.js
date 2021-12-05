@@ -86,7 +86,7 @@ exports.execute = function (req, res) {
 
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const accountId = process.env.TWILIO_ACCOUNT_SID;
-  const dataextensionId = "F8BCBDCC-6526-49BD-BCBE-CC4A906FE0D2";
+
   var request_token = {
     'access_token': "",
     'rest_instance_url': ""
@@ -105,9 +105,9 @@ exports.execute = function (req, res) {
       request_token.rest_instance_url = tokenResponse.data.rest_instance_url;
 
       axios.post("https://api.twilio.com/2010-04-01/Accounts/" + accountId + "/Messages.json", qs.stringify({
-        'Body': 'Hello ini dari node.js biasa',
-        'From': 'whatsapp:+14155238886',
-        'To': 'whatsapp:+6285719752942',
+        'Body': req.body.inArguments[0].Message,
+        'From': 'whatsapp:+'+req.body.inArguments[0].Sender,
+        'To': 'whatsapp:+'+req.body.inArguments[0].Mobile,
       }), {
         auth: {
           username: accountId,
@@ -149,7 +149,7 @@ exports.execute = function (req, res) {
             }
           }
           console.log(config)
-          axios.post(`${request_token.rest_instance_url}data/v1/async/dataextensions/key:${dataextensionId}/rows`, payload, config)
+          axios.post(`${request_token.rest_instance_url}data/v1/async/dataextensions/key:${req.body.inArguments[0].DataExtensionResponse}/rows`, payload, config)
             .then(response => {
               console.log(response);
             })
@@ -164,17 +164,12 @@ exports.execute = function (req, res) {
     })
     .catch(error => {
       console.log("Error TOKEN => " + error)
-    })
+    });
 
-
-
-
-
-  console.log("ISI DATA EXTENSION =>" + req.body.inArguments[0].DataExtension);
   console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
   console.log("ISI PHONE NUMBER => " + req.body.inArguments[0].Mobile);
   console.log("ISI MESSAGE =>" + req.body.inArguments[0].Message);
-  // console.log(req.body)
+  
   logData(req);
   console.log("=======================");
   console.log("EXECUTE FUNCTION STOP");
