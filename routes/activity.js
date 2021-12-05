@@ -1,14 +1,14 @@
-'use strict';
-var util = require('util');
+"use strict";
+var util = require("util");
 
 // Deps
-const Path = require('path');
-const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
-const axios = require('axios');
-const qs = require('qs');
-var http = require('https');
-var request = require('request');
-const { response } = require('express');
+const Path = require("path");
+const JWT = require(Path.join(__dirname, "..", "lib", "jwtDecoder.js"));
+const axios = require("axios");
+const qs = require("qs");
+var http = require("https");
+var request = require("request");
+const { response } = require("express");
 
 exports.logExecuteData = [];
 
@@ -30,7 +30,7 @@ function logData(req) {
         stale: req.stale,
         protocol: req.protocol,
         secure: req.secure,
-        originalUrl: req.originalUrl
+        originalUrl: req.originalUrl,
     });
     console.log("body: " + util.inspect(req.body));
     console.log("headers: " + req.headers);
@@ -58,7 +58,7 @@ exports.edit = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     // console.log( req.body );
     logData(req);
-    res.send(200, 'Edit');
+    res.send(200, "Edit");
 };
 
 /*
@@ -74,72 +74,82 @@ exports.save = function (req, res) {
     // console.log(messageValue);
     // console.log( req.body)
     logData(req);
-    res.send(200, 'Save');
+    res.send(200, "Save");
 };
 
 /*
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function (req, res) {
+    console.log("EXECUTE FUNCTION START");
+    console.log("=======================");
 
-    console.log("EXECUTE FUNCTION START")
-    console.log("=======================")
-    
     // decoded in arguments
-    // const accountSid = 'ACb494ea5723f3f2f591bbc092b094d41d'; 
-    // const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d'; 
+    // const accountSid = 'ACb494ea5723f3f2f591bbc092b094d41d';
+    // const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d';
     // require('dotenv').config();
-    
-    const authToken = process.env.TWILIO_AUTH_TOKEN
-    const accountId = process.env.TWILIO_ACCOUNT_SID
-    const mcToken = "eyJhbGciOiJIUzI1NiIsImtpZCI6IjQiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJZSkhqQXA5d211UDZhODFjSkhMTk9BYnQiLCJjbGllbnRfaWQiOiJzcm11NDl4NXExdzJ2amV5OXN1ZWY2NHciLCJlaWQiOjExMDAwNjQ3NCwic3RhY2tfa2V5IjoiUzExIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.0iwnnC1H4MiBzeyWvbmmToYEszB1pAm5AYeiV_QHKwE.hiPWiMKAWq60RkHMTC_Wf4LiGHpMFT2yi7uw2YZevrhSZTg52CLeQeTzy6c_fwC309HGZz8t03DlI_wHz4EnVYeIeub3nKdfBNaVWUmVcwy7-Qa1mFZ5JZLIVLUm13Jiy3UftgUawDYqZmNol3omT7DwTNZ7cr0xD1VUL0jyOSxkMo3Tdrw"
-    const dataextensionId = "F8BCBDCC-6526-49BD-BCBE-CC4A906FE0D2"
 
-    var response = {
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const accountId = process.env.TWILIO_ACCOUNT_SID;
+    const dataextensionId = "F8BCBDCC-6526-49BD-BCBE-CC4A906FE0D2";
+
+    var twilioResponse = {
         "data":
-            {
-                "items": [{
-                    'sid': 'SM90a4ab1874da40879dee0b5f16c16dc',
-                    'date_created': 'Sat, 04 Dec 2021 07:06:29 +0000',
-                    'date_updated': 'Sat, 04 Dec 2021 07:06:29 +0000',
-                    'date_sent': null,
-                    'account_sid': 'ACb494ea5723f3f2f591bbc092b094d41d',
-                    'to': 'whatsapp:+6285719752942',
-                    'from': 'whatsapp:+14155238886',
-                    'messaging_service_sid': null,
-                    'body': 'Ini test message dari custom journey builider version 4',
-                    'status': 'queued',
-                    'num_segments': '1',
-                    'num_media': '0',
-                    'direction': 'outbound-api',
-                    'api_version': '2010-04-01',
-                    'price': null,
-                    'price_unit': null,
-                    'error_code': null,
-                    'error_message': null,
-                    'uri': '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2.json',
-                    'subresource_uris': "{ media: '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2/Media.json' } }"
-                }]
-            }
-
-    }
-
-    var config = {
-        'headers': {
-            'Authorization': 'Bearer '+mcToken
+        {
+            "items": [{
+                'sid': 'SM90a4ab1874da40879dee0b5f16c16dc1',
+                'date_created': 'Sat, 04 Dec 2021 07:06:29 +0000',
+                'date_updated': 'Sat, 04 Dec 2021 07:06:29 +0000',
+                'date_sent': null,
+                'account_sid': 'ACb494ea5723f3f2f591bbc092b094d41d',
+                'to': 'whatsapp:+6285719752942',
+                'from': 'whatsapp:+14155238886',
+                'messaging_service_sid': null,
+                'body': 'Ini test message dari custom journey builider version 1',
+                'status': 'queued',
+                'num_segments': '1',
+                'num_media': '0',
+                'direction': 'outbound-api',
+                'api_version': '2010-04-01',
+                'price': null,
+                'price_unit': null,
+                'error_code': null,
+                'error_message': null,
+                'uri': '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2.json',
+                'subresource_uris': "{ media: '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2/Media.json' } }"
+            }]
         }
+
     }
 
-    var data = {
-        'items': [response.data]
-    }
-    
-    axios.post(`https://mcx3dk6gqx05byn626r3yqc9-hl0.rest.marketingcloudapis.com/data/v1/async/dataextensions/key:${dataextensionId}/rows`, data, config)
+    // var data = {
+    //   'items': [response]
+    // }
+
+    axios.post('https://mcx3dk6gqx05byn626r3yqc9-hl0.auth.marketingcloudapis.com/v2/token', {
+        "Content-type": "application/json",
+        "grant_type": "client_credentials",
+        "client_id": "srmu49x5q1w2vjey9suef64w",
+        "client_secret": "cHzMmRbi8fn3NiAWiixZQhol",
+        "account_id": "110006474"
+    })
     .then(response => {
-        console.log(response);
+        var config = {
+            'headers': {
+                'Authorization': 'Bearer ' + response.data.access_token
+            }
+        }
+
+        axios.post(`${response.data.rest_instance_url}/data/v1/async/dataextensions/key:${dataextensionId}/rows`, twilioResponse.data, config)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     })
     .catch(error => {
-        console.log(error);
+        console.log(error)
     })
 
     // axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
@@ -161,17 +171,17 @@ exports.execute = function (req, res) {
     // .catch(error => {
     //   console.log('Auth '+authToken+' Account SID '+accountId);
     //   console.log(error);
-    // }) 
+    // })
 
-    console.log('ISI DATA EXTENSION =>'+req.body.inArguments[0].DataExtension);
-    console.log('ISI SENDER =>'+req.body.inArguments[0].Sender);
-    console.log('ISI PHONE NUMBER => '+req.body.inArguments[0].Mobile);
-    console.log('ISI MESSAGE =>'+req.body.inArguments[0].Message)
+    console.log("ISI DATA EXTENSION =>" + req.body.inArguments[0].DataExtension);
+    console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
+    console.log("ISI PHONE NUMBER => " + req.body.inArguments[0].Mobile);
+    console.log("ISI MESSAGE =>" + req.body.inArguments[0].Message);
     // console.log(req.body)
     logData(req);
-    console.log("=======================")
-    console.log("EXECUTE FUNCTION STOP")
-    res.send(200, 'Execute');
+    console.log("=======================");
+    console.log("EXECUTE FUNCTION STOP");
+    res.send(200, "Execute");
 };
 
 /*
@@ -181,7 +191,7 @@ exports.publish = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     // console.log( req.body );
     logData(req);
-    res.send(200, 'Publish');
+    res.send(200, "Publish");
 };
 
 /*
@@ -191,5 +201,5 @@ exports.validate = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     // console.log( req.body );
     logData(req);
-    res.send(200, 'Validate');
+    res.send(200, "Validate");
 };
