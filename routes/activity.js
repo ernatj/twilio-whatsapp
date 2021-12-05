@@ -84,46 +84,38 @@ exports.execute = function (req, res) {
     console.log("EXECUTE FUNCTION START");
     console.log("=======================");
 
-    // decoded in arguments
-    // const accountSid = 'ACb494ea5723f3f2f591bbc092b094d41d';
-    // const authToken = '922353ff86ab2d2b8289d7c7fcf9f78d';
-    // require('dotenv').config();
-
     const authToken = process.env.TWILIO_AUTH_TOKEN;
     const accountId = process.env.TWILIO_ACCOUNT_SID;
     const dataextensionId = "F8BCBDCC-6526-49BD-BCBE-CC4A906FE0D2";
+    var access_token = ""
 
-    var twilioResponse = {
-        "data":
-        {
-            "items": [{
-                'sid': 'SM90a4ab1874da40879dee0b5f16c16dc1',
-                'date_created': 'Sat, 04 Dec 2021 07:06:29 +0000',
-                'date_updated': 'Sat, 04 Dec 2021 07:06:29 +0000',
-                'date_sent': null,
-                'account_sid': 'ACb494ea5723f3f2f591bbc092b094d41d',
-                'to': 'whatsapp:+6285719752942',
-                'from': 'whatsapp:+14155238886',
-                'messaging_service_sid': null,
-                'body': 'Ini test message dari custom journey builider version 1',
-                'status': 'queued',
-                'num_segments': '1',
-                'num_media': '0',
-                'direction': 'outbound-api',
-                'api_version': '2010-04-01',
-                'price': null,
-                'price_unit': null,
-                'error_code': null,
-                'error_message': null,
-                'uri': '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2.json',
-                'subresource_uris': "{ media: '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2/Media.json' } }"
-            }]
-        }
+    // var twilioResponse = {
+    //     "data":
+    //     {
+    //         "items": [{
+    //             'sid': 'SM90a4ab1874da40879dee0b5f16c16dc1',
+    //             'date_created': 'Sat, 04 Dec 2021 07:06:29 +0000',
+    //             'date_updated': 'Sat, 04 Dec 2021 07:06:29 +0000',
+    //             'date_sent': null,
+    //             'account_sid': 'ACb494ea5723f3f2f591bbc092b094d41d',
+    //             'to': 'whatsapp:+6285719752942',
+    //             'from': 'whatsapp:+14155238886',
+    //             'messaging_service_sid': null,
+    //             'body': 'Ini test message dari custom journey builider version 1',
+    //             'status': 'queued',
+    //             'num_segments': '1',
+    //             'num_media': '0',
+    //             'direction': 'outbound-api',
+    //             'api_version': '2010-04-01',
+    //             'price': null,
+    //             'price_unit': null,
+    //             'error_code': null,
+    //             'error_message': null,
+    //             'uri': '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2.json',
+    //             'subresource_uris': "{ media: '/2010-04-01/Accounts/ACb494ea5723f3f2f591bbc092b094d41d/Messages/SM90a4ab1874da40879dee0b5f16c16dc2/Media.json' } }"
+    //         }]
+    //     }
 
-    }
-
-    // var data = {
-    //   'items': [response]
     // }
 
     axios.post('https://mcx3dk6gqx05byn626r3yqc9-hl0.auth.marketingcloudapis.com/v2/token', {
@@ -134,44 +126,45 @@ exports.execute = function (req, res) {
         "account_id": "110006474"
     })
     .then(response => {
-        var config = {
-            'headers': {
-                'Authorization': 'Bearer ' + response.data.access_token
-            }
-        }
-
-        axios.post(`${response.data.rest_instance_url}/data/v1/async/dataextensions/key:${dataextensionId}/rows`, twilioResponse.data, config)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        access_token = response.data.access_token
     })
     .catch(error => {
         console.log(error)
     })
 
-    // axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
-    //     'Body': req.body.inArguments[0].Message,
-    //     'From': 'whatsapp:+'+ req.body.inArguments[0].Sender,
-    //     'To': 'whatsapp:+'+ req.body.inArguments[0].Mobile,
-    // }), {
-    //   auth: {
-    //     username: accountId,
-    //     password: authToken
-    //   }
-    // })
-    // .then(response => {
-    //     //Send Status to Data Extension for Updates
-    //     console.log("Response Data"+util.inspect(response.data));
+    axios.post("https://api.twilio.com/2010-04-01/Accounts/"+accountId+"/Messages.json", qs.stringify({
+        'Body': req.body.inArguments[0].Message,
+        'From': 'whatsapp:+'+ req.body.inArguments[0].Sender,
+        'To': 'whatsapp:+'+ req.body.inArguments[0].Mobile,
+    }), {
+      auth: {
+        username: accountId,
+        password: authToken
+      }
+    })
+    .then(twilioResponse => {
+        //Send Status to Data Extension for Updates
+        console.log("Response Data"+util.inspect(twilioResponse.data));
 
-    //     // Axios to Data Extension
-    // })
-    // .catch(error => {
-    //   console.log('Auth '+authToken+' Account SID '+accountId);
-    //   console.log(error);
-    // })
+        // Axios to Data Extension
+        var config = {
+            'headers': {
+                'Authorization': 'Bearer ' + access_token
+            }
+        }
+    
+        axios.post(`${response.data.rest_instance_url}/data/v1/async/dataextensions/key:${dataextensionId}/rows`, twilioResponse.data, config)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    })
+    .catch(error => {
+      console.log('Auth '+authToken+' Account SID '+accountId);
+      console.log(error);
+    })
 
     console.log("ISI DATA EXTENSION =>" + req.body.inArguments[0].DataExtension);
     console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
