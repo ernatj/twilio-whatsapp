@@ -105,7 +105,7 @@ define([
             payload['arguments'].execute.outArguments.length > 0
         );
 
-        var outArguments = hasOutArguments ? payload['arguments'].execute.outArguments : {};
+        // var outArguments = hasOutArguments ? payload['arguments'].execute.outArguments : {};
 
         connection.trigger('updateButton', {
             button: 'next',
@@ -144,12 +144,12 @@ define([
             "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
         }];
 
-        payload['arguments'].execute.outArguments = [{
-            "ContactKey": "{{Contact.Key}}",
-            "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
-            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
-            "Sent": true
-        }]
+        // payload['arguments'].execute.outArguments = [{
+        //     "ContactKey": "{{Contact.Key}}",
+        //     "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
+        //     "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
+        //     "Sent": true
+        // }]
         
         payload['metaData'].isConfigured = true;
 
