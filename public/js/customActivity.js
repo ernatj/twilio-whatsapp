@@ -89,6 +89,9 @@ define([
                 if (key === 'Sender'){
                     $('#dropdown-element-sender').val(val);
                 }
+                if (key === 'PhoneNumber'){
+                    $('#form-element-01').val(val);
+                }
                 if(key === 'Message'){
                     $('#textarea-id-message').val(val);
                 }
@@ -125,6 +128,7 @@ define([
         var dataExtensionSource = $('#dropdown-element-dataextension-source').val();
         var dataExtensionResponse = $('#dropdown-element-dataextension-response').val();
         var senderNumberValue = $('#dropdown-element-sender').val();
+        var phoneNumberAttribute = $('#form-element-01').val();
         var messageValue = $('#textarea-id-message').val();
         // var dataExtensionSource = "WelcomeProgramJourney_3"
 
@@ -133,7 +137,7 @@ define([
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
             "DataExtensionSource": dataExtensionSource,
             "DataExtensionResponse": dataExtensionResponse,
-            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+".PhoneNumber}}",
+            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
@@ -143,7 +147,7 @@ define([
         payload['arguments'].execute.outArguments = [{
             "ContactKey": "{{Contact.Key}}",
             "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
-            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+".PhoneNumber}}",
+            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
             "Sent": true
         }]
         
