@@ -74,7 +74,7 @@ exports.save = function (req, res) {
   // console.log(messageValue);
   // console.log( req.body)
   logData(req);
-  res.send(200, "Save");
+  res.status(200).send("Save");
 };
 
 /*
@@ -155,15 +155,18 @@ exports.execute = function (req, res) {
             })
             .catch(error => {
               console.log("Error DE => "+error);
+              res.status(400).send("Data Extension Error");
             })
         })
         .catch(error => {
           console.log('Auth ' + authToken + ' Account SID ' + accountId);
+          res.status(400).send("Twilio Error");
           // console.log("Error TWILIO =>" + error);
         })
     })
     .catch(error => {
       // console.log("Error TOKEN => " + error)
+      res.status(400).send("Token Error");
     });
 
   // console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
@@ -173,7 +176,7 @@ exports.execute = function (req, res) {
   logData(req);
   console.log("=======================");
   console.log("EXECUTE FUNCTION STOP");
-  res.send(200, "Execute");
+  res.status(200).send("Execute");
 };
 
 /*
