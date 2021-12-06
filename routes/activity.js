@@ -100,7 +100,7 @@ exports.execute = function (req, res) {
     "account_id": "110006474"
   })
     .then(tokenResponse => {
-      console.log(tokenResponse)
+      // console.log(tokenResponse)
       request_token.access_token = tokenResponse.data.access_token;
       request_token.rest_instance_url = tokenResponse.data.rest_instance_url;
 
@@ -148,10 +148,10 @@ exports.execute = function (req, res) {
               'Authorization': 'Bearer ' + request_token.access_token
             }
           }
-          console.log(config)
+          // console.log(config)
           axios.post(`${request_token.rest_instance_url}data/v1/async/dataextensions/key:${req.body.inArguments[0].DataExtensionResponse}/rows`, payload, config)
             .then(response => {
-              console.log(response);
+              // console.log(response);
             })
             .catch(error => {
               console.log("Error DE => "+error);
@@ -166,9 +166,9 @@ exports.execute = function (req, res) {
       // console.log("Error TOKEN => " + error)
     });
 
-  console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
-  console.log("ISI PHONE NUMBER => " + req.body.inArguments[0].Mobile);
-  console.log("ISI MESSAGE =>" + req.body.inArguments[0].Message);
+  // console.log("ISI SENDER =>" + req.body.inArguments[0].Sender);
+  // console.log("ISI PHONE NUMBER => " + req.body.inArguments[0].Mobile);
+  // console.log("ISI MESSAGE =>" + req.body.inArguments[0].Message);
   
   logData(req);
   console.log("=======================");
