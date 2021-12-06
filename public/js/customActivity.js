@@ -89,7 +89,7 @@ define([
                 if (key === 'Sender'){
                     $('#dropdown-element-sender').val(val);
                 }
-                if (key === 'PhoneNumber'){
+                if (key === 'PhoneNumberAttribute'){
                     $('#form-element-01').val(val);
                 }
                 if(key === 'Message'){
@@ -138,6 +138,7 @@ define([
             "DataExtensionSource": dataExtensionSource,
             "DataExtensionResponse": dataExtensionResponse,
             "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
+            "PhoneNumberAttribute": phoneNumberAttribute,
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
