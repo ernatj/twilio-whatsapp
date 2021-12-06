@@ -107,7 +107,7 @@ exports.execute = function (req, res) {
       axios.post("https://api.twilio.com/2010-04-01/Accounts/" + accountId + "/Messages.json", qs.stringify({
         'Body': req.body.inArguments[0].Message,
         'From': 'whatsapp:+'+req.body.inArguments[0].Sender,
-        'To': 'whatsapp:+'+req.body.inArguments[0].Mobile,
+        'To': 'whatsapp:+'+req.body.inArguments[0].PhoneNumber,
       }), {
         auth: {
           username: accountId,

@@ -133,19 +133,17 @@ define([
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
             "DataExtensionSource": dataExtensionSource,
             "DataExtensionResponse": dataExtensionResponse,
-            "Mobile": "{{Contact.Attribute."+dataExtensionSource+".Mobile}}",
+            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+".PhoneNumber}}",
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
-            "FirstName": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
-            "LastName": "{{Contact.Attribute."+dataExtensionSource+".LastName}}"
+            "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
         }];
 
         payload['arguments'].execute.outArguments = [{
             "ContactKey": "{{Contact.Key}}",
-            "FirstName": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
-            "LastName": "{{Contact.Attribute."+dataExtensionSource+".LastName}}",
-            "Mobile": "{{Contact.Attribute."+dataExtensionSource+".Mobile}}",
+            "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
+            "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+".PhoneNumber}}",
             "Sent": true
         }]
         
