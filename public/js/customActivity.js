@@ -142,7 +142,7 @@ define([
             "Sender": senderNumberValue,
             "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
-            "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
+            "Name": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
         }];
 
         // payload['arguments'].execute.outArguments = [{
