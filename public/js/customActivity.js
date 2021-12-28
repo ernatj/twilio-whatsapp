@@ -132,6 +132,9 @@ define([
         var messageValue = $('#textarea-id-message').val();
         // var dataExtensionSource = "WelcomeProgramJourney_3"
 
+        // Synthetic AMPScript replacing %%name%%
+        //messageValue = messageValue.replace("%%name%%", "{{Contact.Attribute."+dataExtensionSource+".name}}")
+
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             // Argument (Contact.Attribute) => Attribute terkait dari inArgument
@@ -140,24 +143,13 @@ define([
             "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
             "PhoneNumberAttribute": phoneNumberAttribute,
             "Sender": senderNumberValue,
-            "Message": messageValue,
+            "Message": messageValue.replace("%%name%%", "{{Contact.Attribute."+dataExtensionSource+".name}}"),
             "ContactKey": "{{Contact.Key}}",
-            "Name": "{{Contact.Attribute."+dataExtensionSource+".FirstName}}",
+            "Name": "{{Contact.Attribute."+dataExtensionSource+".name}}",
         }];
-
-        // payload['arguments'].execute.outArguments = [{
-        //     "ContactKey": "{{Contact.Key}}",
-        //     "Name": "{{Contact.Attribute."+dataExtensionSource+".Name}}",
-        //     "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
-        //     "Sent": true
-        // }]
         
         payload['metaData'].isConfigured = true;
 
-        // console.log("Phone Number ");
-        // console.dir(phoneNumberValue);
-        // console.log("Message ");
-        // console.dir(messageValue);
         console.log("Payload "+JSON.stringify(payload));
         //console.log("Payload"+ JSON.stringify(JSON.parse(payload),null,2));
         connection.trigger('updateActivity', payload);
