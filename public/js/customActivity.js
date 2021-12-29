@@ -131,9 +131,10 @@ define([
         var phoneNumberAttribute = $('#form-element-01').val();
         var messageValue = $('#textarea-id-message').val();
         // var dataExtensionSource = "WelcomeProgramJourney_3"
-
+    
         // Synthetic AMPScript replacing %%name%%
-        //messageValue = messageValue.replace("%%name%%", "{{Contact.Attribute."+dataExtensionSource+".name}}")
+        messageValue = messageValue.replace("%%name%%", "{{Contact.Attribute."+dataExtensionSource+".name}}")
+        messageValue = messageValue.replace("##name##", "{{Contact.Attribute."+dataExtensionSource+".name}}".toUpperCase())
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
@@ -143,7 +144,7 @@ define([
             "PhoneNumber": "{{Contact.Attribute."+dataExtensionSource+"."+phoneNumberAttribute+"}}",
             "PhoneNumberAttribute": phoneNumberAttribute,
             "Sender": senderNumberValue,
-            "Message": messageValue.replace("%%name%%", "{{Contact.Attribute."+dataExtensionSource+".name}}"),
+            "Message": messageValue,
             "ContactKey": "{{Contact.Key}}",
             "Name": "{{Contact.Attribute."+dataExtensionSource+".name}}",
         }];
