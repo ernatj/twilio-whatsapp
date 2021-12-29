@@ -8,7 +8,7 @@
     "type": "REST",
     "lang": {
         "en-US": {
-            "name": "Blendmedia Whatsapp",
+            "name": "Blendmedia WA Test",
           "description": "A Template for Whatsapp API",
           "step1Label": "Configure Activity"
         }
