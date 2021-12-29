@@ -134,7 +134,7 @@ define([
     
         // Synthetic AMPScript replacing %%name%%
         messageValue = messageValue.replace("%%name%%", "{{Contact.Attribute."+dataExtensionSource+".name}}")
-        messageValue = messageValue.replace("##name##", `{{Contact.Attribute.${dataExtensionSource.name}}}`.toUpperCase())
+        messageValue = messageValue.replace("##name##", `{{Contact.Attribute.${dataExtensionSource}.name}}`.toUpperCase())
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
