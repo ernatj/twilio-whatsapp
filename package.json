@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devsutd/journey-builder-activity-template.git"
+    "url": "git+https://github.com/heraldoyp/twilio-whatsapp.git"
   },
   "keywords": [
     "journey",
@@ -22,9 +22,9 @@
   "author": "Heraldo Yusron",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/devsutd/journey-builder-activity-template/issues"
+    "url": "https://github.com/heraldoyp/twilio-whatsapp.git"
   },
-  "homepage": "https://github.com/devsutd/journey-builder-activity-template#readme",
+  "homepage": "https://github.com/heraldoyp/twilio-whatsapp.git",
   "dependencies": {
     "@salesforce-ux/design-system": "^2.14.2",
     "axios": "^0.24.0",
